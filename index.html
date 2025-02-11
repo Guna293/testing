@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog</title>
+    <link rel="stylesheet" href="magnifies.css">
+</head>
+<body>
+    <center><p><b>Hello, Welcome! You can get your own blog by uploading the given details.</b></p></center> 
+        
+    <form id="myform" onsubmit="submitForm(event)"> <!-- Corrected function name here -->
+        <b>Name:</b><input type="text" id="name" name="name">
+        <b>Phone:</b><input type="tel" id="mobile" name="mobile">
+        <b>Suggest Name of Blog:</b><input type="text" id="nameb" name="nameb"><br><br>
+        <b>DOB:</b><input type="date" name="dob"> 
+        <b>Profile Pic link:</b><input type="url" name="pic"><br><br>
+        <b>About Your Self:</b><textarea rows="5" cols="10" name="about"></textarea>
+       
+        <b>Education:</b><textarea rows="5" cols="10" name="edu"></textarea><br><br>
+        
+        <b>Social media links:</b><input type="url"  name="social"><br><br>
+        <b>E-mail:</b><input type="email" id="email" name="email"><br><br>
+        <center><button type="submit" class="col">Create Blog</button></center>
+    </form>
+
+    <div id="details" style="display:none;">
+        <!-- JavaScript will populate this div with the submitted data -->
+    </div>
+
+    <script>
+        function submitForm(event) { 
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get form data
+            const formData = new FormData(document.getElementById("myform"));
+
+            // Get values from form data
+            const name = formData.get("name");
+            const email = formData.get("email");
+            const phone = formData.get("mobile");
+            const pic = formData.get("pic");
+            const social = formData.get("social");
+            const about = formData.get("about");
+            const dob = formData.get("dob");
+            const edu = formData.get("edu");
+            const nameb = formData.get("nameb");
+
+            // Hide the form
+            document.getElementById("myform").style.display = "none";
+
+            // Display the submitted details in the same page
+            const detailsContainer = document.getElementById("details");
+            detailsContainer.style.display = "block";
+            detailsContainer.innerHTML = `
+                <center><h1 style="color:red">${nameb}</h1></center>
+                <center><img src="${pic}" alt="Profile Pic"></center>
+                <p><strong>Hello,</strong> Welcome to my blog. <strong>${name}</strong> here. ${about}
+                I was born on <strong>${dob}</strong>.</p>
+                <h1>Contact Details:</h1>
+                <p>Mail me at <strong>${email}</strong>. You can also contact me through WhatsApp at <strong>${phone}</strong>. It's my pleasure to connect with you.</p>
+                <h1>Education Details:</h1>
+                <p>${edu}</p>
+                <h1>Social Media Link:</h1>
+                <a href="${social}" target="_blank">Do follow me</a>
+            `;
+        }
+    </script>
+</body>
+</html>
